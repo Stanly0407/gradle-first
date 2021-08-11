@@ -14,7 +14,7 @@ public class StringUtils {
     /**
      * <p>Checks whether the String a positive number.</p>
      *
-     * <p><code>Null</code> and empty String will return
+     * <p><code>Null</code>, not number and empty String will return
      * <code>false</code>.</p>
      *
      * @param str the <code>String</code> to check
