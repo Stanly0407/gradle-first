@@ -2,78 +2,29 @@ package com.epam.demo;
 
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StringUtilsTest {
 
-    @Test
-    public void isPositiveNumberShouldReturnTrueIfPositiveDouble() {
-        String testNumber = "1.1";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
+    @ParameterizedTest
+    @ValueSource(strings = {"1.1", "1"})
+        public void isPositiveNumberShouldReturnTrueIfPositive(String testedInput) {
+        boolean expected = StringUtils.isPositiveNumber(testedInput);
         Assertions.assertTrue(expected);
     }
 
-    @Test
-    public void isPositiveNumberShouldReturnTrueIfPositiveInteger() {
-        String testNumber = "1";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertTrue(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfNegativeDouble() {
-        String testNumber = "-1.1";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
+    @ParameterizedTest
+    @ValueSource(strings = {"-1.1", "-1"})
+    public void isPositiveNumberShouldReturnFalseIfNegative(String testedInput) {
+        boolean expected = StringUtils.isPositiveNumber(testedInput);
         Assertions.assertFalse(expected);
     }
 
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfNegativeInteger() {
-        String testNumber = "-1";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfNotNumber() {
-        String testNumber = "string";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfEmptyString() {
-        String testNumber = "";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfZero() {
-        String testNumber = "0";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfMinusZero() {
-        String testNumber = "-0";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfStringAndNumber() {
-        String testNumber = "10 str";
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
-        Assertions.assertFalse(expected);
-    }
-
-    @Test
-    public void isPositiveNumberShouldReturnFalseIfNull() {
-        String testNumber = null;
-        boolean expected = StringUtils.isPositiveNumber(testNumber);
+    @ParameterizedTest
+    @ValueSource(strings = {"string", "", "0", "-0", "10 str"})
+    public void isPositiveNumberShouldReturnFalseIfIncorrectInput(String testedInput) {
+        boolean expected = StringUtils.isPositiveNumber(testedInput);
         Assertions.assertFalse(expected);
     }
 
