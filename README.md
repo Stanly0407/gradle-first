@@ -1,6 +1,7 @@
 
 ### Description
 The library provides a method that checks if the entered number is positive.
+
 This library is stored in the local Maven repository.
 
 ### Applying the library
